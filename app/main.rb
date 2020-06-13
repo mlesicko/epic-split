@@ -1,4 +1,5 @@
 require "app/inputs.rb"
+require "app/tiling.rb"
 
 def decenter sprite
   return [sprite.x - sprite.w / 2, sprite.y - sprite.h / 2]
@@ -20,6 +21,7 @@ def tick args
   args.state.jcvd.y = ((args.state.trucks.left.y + args.state.trucks.right.y) / 2) + 60
   
   handleInputs args
+  draw_map args
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
