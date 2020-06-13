@@ -18,10 +18,42 @@ def tick args
   args.state.jcvd.w ||= 52
   args.state.jcvd.h ||= 36
   args.state.jcvd.x = ((args.state.trucks.left.x + args.state.trucks.right.x) / 2)
-  args.state.jcvd.y = ((args.state.trucks.left.y + args.state.trucks.right.y) / 2)
+  args.state.jcvd.y = ((args.state.trucks.left.y + args.state.trucks.right.y) / 2) + 60
+  
+  yspeed = 4
+  xspeed = 2
 
-  if args.inputs.keyboard.key_down.w
-    args.state.h_pressed_at = args.state.tick_count
+  if args.inputs.keyboard.key_held.w
+    args.state.trucks.left.y += yspeed
+  end
+
+  if args.inputs.keyboard.key_held.s
+    args.state.trucks.left.y -= yspeed
+  end
+
+  if args.inputs.keyboard.key_held.a
+    args.state.trucks.left.x -= xspeed
+  end
+
+  if args.inputs.keyboard.key_held.d
+    args.state.trucks.left.x += xspeed
+  end
+
+
+  if args.inputs.keyboard.key_held.up
+    args.state.trucks.right.y += yspeed
+  end
+
+  if args.inputs.keyboard.key_held.down
+    args.state.trucks.right.y -= yspeed
+  end
+
+  if args.inputs.keyboard.key_held.left
+    args.state.trucks.right.x -= xspeed
+  end
+
+  if args.inputs.keyboard.key_held.right
+    args.state.trucks.right.x += xspeed
   end
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
