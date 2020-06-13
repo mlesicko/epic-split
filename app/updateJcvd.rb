@@ -4,9 +4,9 @@ def makeFeet args
   args.state.feet.right.w ||= 19
   args.state.feet.right.h ||= 13
 
-  args.state.feet.left.x = args.state.trucks.left.x
+  args.state.feet.left.x = args.state.trucks.left.x + 30
   args.state.feet.left.y = args.state.trucks.left.y + 80
-  args.state.feet.right.x = args.state.trucks.right.x
+  args.state.feet.right.x = args.state.trucks.right.x - 30
   args.state.feet.right.y = args.state.trucks.right.y + 80
 
   args.state.feet.left.rotation = args.state.jcvd.rotation
