@@ -4,7 +4,7 @@
 ## Attributions
 This game would not have been possible without:
 
-Kenny Game Assets 1
+Kenney Game Assets 1
 Link: https://kenney.itch.io/kenney-game-assets-1
 License: Public Domain
 
