@@ -34,8 +34,8 @@ def updateJcvd args
   leg_left = [ args.state.trucks.left.x, args.state.trucks.left.y, args.state.legs.left.w, args.state.legs.left.h, 'sprites/pant.png', left_leg_rotation ]
   leg_right = [ args.state.jcvd.x, args.state.jcvd.y, args.state.legs.right.w, args.state.legs.right.h, 'sprites/pant.png', right_leg_rotation ]
 
-  args.outputs.sprites << leg_left
-  args.outputs.sprites << leg_right
+#  args.outputs.sprites << leg_left
+# args.outputs.sprites << leg_right
 
 end
 
