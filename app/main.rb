@@ -1,4 +1,5 @@
 require "app/inputs.rb"
+require "app/updateJcvd.rb"
 
 def decenter sprite
   return [sprite.x - sprite.w / 2, sprite.y - sprite.h / 2]
@@ -14,11 +15,9 @@ def tick args
   args.state.trucks.left.y ||= 310
   args.state.trucks.right.x ||= 650
   args.state.trucks.right.y ||= 310
-  args.state.jcvd.w ||= 52
-  args.state.jcvd.h ||= 36
-  args.state.jcvd.x = ((args.state.trucks.left.x + args.state.trucks.right.x) / 2)
-  args.state.jcvd.y = ((args.state.trucks.left.y + args.state.trucks.right.y) / 2) + 60
-  
+
+  updateJcvd args
+
   handleInputs args
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
