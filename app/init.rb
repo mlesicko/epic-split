@@ -22,8 +22,8 @@ def init_tiles args
   tiles_x = (0..tile_count_x).to_a
   tiles_y = (0..tile_count_y + 1).to_a
   args.state.tiles ||= tiles_x.map { |x| 
-    tiles_y.map { |y| 
-      Tile.new((args.state.tile.w * x),
+    return tiles_y.map { |y| 
+      return Tile.new((args.state.tile.w * x),
                (args.state.tile.h * y) - args.state.tile.scroll.y,
                if (x*2 == tile_count_x) or (x*2 == tile_count_x - 2)
                  "sprites/tiles/asphalt\ road/road_asphalt01.png"

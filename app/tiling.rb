@@ -6,6 +6,18 @@ class Tile
     @img = img
   end
 
+  def serialize
+    {x: x, y: y, img: img}
+  end
+
+  def inspect
+    serialize.to_s
+  end
+
+  def to_s
+    serialize.to_s
+  end
+
   def sprite
     [x, y, 128, 128, img]
   end
@@ -13,9 +25,9 @@ end
 
 
 def draw_map args
-  bg = arg.state.tiles.map { |x| 
+  bg = args.state.tiles.map { |x| 
     return x.map { |y| 
-      return y.render
+      return y.sprite
     }
   }
 
