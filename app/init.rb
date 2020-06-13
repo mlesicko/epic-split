@@ -21,21 +21,20 @@ def init_tiles args
   tile_count_y = (args.state.screen.h / args.state.tile.h).to_i 
   tiles_x = (0..tile_count_x).to_a
   tiles_y = (0..tile_count_y + 1).to_a
-  args.state.tiles ||= tiles_x.map { |x| 
-    return tiles_y.map { |y| 
-      return Tile.new((args.state.tile.w * x),
-               (args.state.tile.h * y) - args.state.tile.scroll.y,
-               if (x*2 == tile_count_x) or (x*2 == tile_count_x - 2)
-                 "sprites/tiles/asphalt\ road/road_asphalt01.png"
-               else 
-                 "sprites/tiles/grass/land_grass11.png"
-               end) 
-    }
-  }
+  args.state.tiles ||= tiles_x.map do |x| 
+    tiles_y.map do |y| 
+      args.state.new_entity(:tile,
+                       { x: (args.state.tile.w * x),
+                         y: (args.state.tile.h * y) - args.state.tile.scroll.y,
+                         img: "sprites/tiles/grass/land_grass11.png"})
+    end
+  end
 
 end
 
 def init args
+  args.state.jcvd.w ||= 52
+  args.state.jcvd.h ||= 36
   init_trucks args
   init_tiles args
 end

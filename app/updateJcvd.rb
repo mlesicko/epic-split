@@ -39,8 +39,6 @@ def makeLegs args
 end
 
 def updateJcvd args
-  args.state.jcvd.w ||= 52
-  args.state.jcvd.h ||= 36
   args.state.jcvd.x = ((args.state.trucks.left.x + args.state.trucks.right.x) / 2)
   args.state.jcvd.y = ((args.state.trucks.left.y + args.state.trucks.right.y) / 2) + 80
   args.state.jcvd.rotation = Math.atan2(
