@@ -1,0 +1,5 @@
+#devid=CaptainLex
+#devtitle=LoggerDale Productions
+#gameid=#TODO
+#gametitle=Epic Split
+#version=0.1
