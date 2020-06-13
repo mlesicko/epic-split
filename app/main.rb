@@ -1,3 +1,4 @@
+require "app/init.rb"
 require "app/inputs.rb"
 require "app/updateJcvd.rb"
 require "app/tiling.rb"
@@ -7,15 +8,7 @@ def decenter sprite
 end
 
 def tick args
-  args.state.trucks.left.w ||= 88
-  args.state.trucks.left.h ||= 218
-  args.state.trucks.right.w ||= 88
-  args.state.trucks.right.h ||= 218
-  
-  args.state.trucks.left.x ||= 520
-  args.state.trucks.left.y ||= 310
-  args.state.trucks.right.x ||= 650
-  args.state.trucks.right.y ||= 310
+  init args
 
   handleInputs args
   draw_map args
@@ -36,6 +29,5 @@ def tick args
   args.outputs.sprites << foot_left
   args.outputs.sprites << foot_right
   args.outputs.sprites << jcvd
-
 end
 
