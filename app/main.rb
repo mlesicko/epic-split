@@ -17,14 +17,13 @@ def tick args
   args.state.trucks.right.x ||= 650
   args.state.trucks.right.y ||= 310
 
-  updateJcvd args
-
   handleInputs args
   draw_map args
+  updateJcvd args
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
-  jcvd = [ * (decenter args.state.jcvd), 52, 36, 'sprites/character_black_white.png', 180]
+  jcvd = [ * (decenter args.state.jcvd), 52, 36, 'sprites/jcvd.png', 180]
   
   args.outputs.sprites << truck_left
   args.outputs.sprites << truck_right

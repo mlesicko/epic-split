@@ -16,9 +16,9 @@ def draw_map args
        128,
        128, 
        if (x*2 == tile_count_x) or (x*2 == tile_count_x - 2)
-         "sprites/tiles/Asphalt\ road/road_asphalt01.png"
+         "sprites/tiles/asphalt\ road/road_asphalt01.png"
       else 
-        "sprites/tiles/Grass/land_grass11.png"
+        "sprites/tiles/grass/land_grass11.png"
       end] 
     }
   }
