@@ -59,7 +59,7 @@ end
 def ticks_to_time ticks
   totalSeconds =  (ticks / 60).to_i
   totalMinutes = (totalSeconds / 60).to_i
-  remainderSeconds = totalSeconds - (totalMinutes * 60)
+  remainderSeconds = (totalSeconds - (totalMinutes * 60)).to_i
   return totalMinutes.to_s + ":" + remainderSeconds.to_s.rjust(2, "0")
 end
 
@@ -75,7 +75,7 @@ def tick args
     updateJcvd args
     detect_surfaces args
 
-    # args.outputs.sounds << "sounds/music.ogg"
+    args.outputs.sounds << "sounds/music.ogg"
 
     draw args
     if (args.state.trucks.left.surfaces.include? "grass") and !(truck_hit_truck? args.state.trucks.left, args.state.trucks.right)
@@ -85,19 +85,20 @@ def tick args
     if args.state.trucks.right.surfaces.include? "grass" and !(truck_hit_truck? args.state.trucks.right, args.state.trucks.left)
       args.state.trucks.right.y -= args.state.speed
     end
+    
+    if (args.state.opening_done)
+      args.state.running_time = args.state.tick_count - args.state.start_time  
+      args.state.speed = 1 + (args.state.running_time / 1800).to_i
+    end
   end
 
-  args.state.running_time = args.state.tick_count - args.state.start_time  
-  args.state.speed = 1 + (args.state.running_time / 1800).to_i
 
   args.outputs.labels << [40, 80, (ticks_to_time args.state.running_time), 3, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
   
-=begin
   if (truck_hit_obstacle? args, args.state.trucks.left) or 
       (truck_hit_obstacle? args, args.state.trucks.right) or
       (args.state.trucks.left.y < -105) or
       (args.state.trucks.right.y < -105)
     lose_game args
   end
-=end
 end
