@@ -16,6 +16,18 @@ def handleOpening args
     args.state.zoom = 1
     args.state.opening_done = true
   end
+  if !args.state.opening_done
+    leftStart = (args.state.screen.w/2 - args.state.trucks.left.w/2)
+    rightStart = (args.state.screen.w/2 + args.state.trucks.right.w/2)
+    leftTarget = 575
+    rightTarget = 705
+    leftDelta =  leftStart - leftTarget
+    rightDelta =  rightTarget - rightStart
+    left = leftStart - ((1 / args.state.zoom) * leftDelta)
+    right = rightStart + ((1 / args.state.zoom) * rightDelta)
+    args.state.trucks.left.x = left
+    args.state.trucks.right.x = right
+  end
   case args.state.tick_count
   when (60..240)
     args.outputs.labels << [args.state.screen.w/2+2, 563, "A", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
@@ -68,7 +80,7 @@ def tick args
   spawn_obstacle args
   if !args.state.lost_at
     scroll_obstacles args
-
+  
     handleOpening args
 
     handleInputs args

@@ -4,15 +4,13 @@ def init_trucks args
   args.state.trucks.right.w ||= 88
   args.state.trucks.right.h ||= 218
   
-  args.state.trucks.left.x ||= 575
+  args.state.trucks.left.x ||= args.state.screen.w/2 - args.state.trucks.left.w/2
   args.state.trucks.left.y ||= 270
-  args.state.trucks.right.x ||= 705
+  args.state.trucks.right.x ||= args.state.screen.w/2 + args.state.trucks.right.w/2
   args.state.trucks.right.y ||= 270
 end
 
 def init_tiles args
-  args.state.screen.w ||= 1280
-  args.state.screen.h ||= 720
   args.state.tile.w ||= 128
   args.state.tile.h ||= 128
   args.state.tile.scroll.y ||= 0
@@ -33,6 +31,8 @@ def init_tiles args
 end
 
 def init args
+  args.state.screen.w ||= 1280
+  args.state.screen.h ||= 720
   args.state.jcvd.w ||= 52
   args.state.jcvd.h ||= 36
   args.state.obstacles ||= []
