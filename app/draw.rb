@@ -106,10 +106,6 @@ def draw args
   args.outputs.sprites << foot_left
   args.outputs.sprites << foot_right
   args.outputs.sprites << jcvd
-  args.outputs.borders << [* (truck_rect args.state.trucks.left)]
-  args.outputs.borders << [* (truck_rect args.state.trucks.right)]
-  args.outputs.labels << [40, 40, args.state.trucks.left.surfaces[0]]
-  args.outputs.labels << [80, 40, args.state.trucks.right.surfaces[0]]
 end
 
 

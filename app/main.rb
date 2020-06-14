@@ -18,6 +18,14 @@ def handleOpening args
   end
 end
 
+def lose_game args
+  args.state.trucks.left.x = nil
+  args.state.trucks.left.y = nil
+  args.state.trucks.right.x = nil
+  args.state.trucks.right.y = nil
+  args.state.obstacles = []
+end 
+
 def tick args
   init args
   spawn_obstacle args
@@ -38,9 +46,7 @@ def tick args
     args.state.trucks.right.y -= 1
   end
 
-  args.outputs.borders << [* (truck_rect args.state.trucks.left)]
-  args.outputs.borders << [* (truck_rect args.state.trucks.right)]
-  args.outputs.labels << [40, 80, (truck_hit_obstacle? args, args.state.trucks.left).to_s]
-  args.outputs.labels << [40, 40, (truck_hit_obstacle? args, args.state.trucks.right).to_s]
-  args.outputs.labels << [40, 120, args.state.obstacles.length.to_s]
+  if (truck_hit_obstacle? args, args.state.trucks.left) or (truck_hit_obstacle? args, args.state.trucks.right)
+    lose_game args
+  end
 end
