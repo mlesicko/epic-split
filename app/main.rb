@@ -23,10 +23,10 @@ def handleOpening args
     rightStart = (args.state.screen.w/2 + args.state.trucks.right.w/2)
     leftTarget = 575
     rightTarget = 705
-    leftDelta =  leftStart - leftTarget
-    rightDelta =  rightTarget - rightStart
-    left = leftStart - ((1 / args.state.zoom) * leftDelta)
-    right = rightStart + ((1 / args.state.zoom) * rightDelta)
+    leftDelta =  leftTarget - leftStart
+    rightDelta =  rightStart - rightTarget
+    left = leftStart + ((1 / args.state.zoom) * leftDelta)
+    right = rightStart - ((1 / args.state.zoom) * rightDelta)
     args.state.trucks.left.x = left
     args.state.trucks.right.x = right
   end
