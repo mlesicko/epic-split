@@ -15,6 +15,7 @@ def handleOpening args
   if args.state.zoom <= 1
     args.state.zoom = 1
     args.state.opening_done = true
+    args.state.opening_done_at = args.state.tick_count
   end
   if !args.state.opening_done
     leftStart = (args.state.screen.w/2 - args.state.trucks.left.w/2)
@@ -99,7 +100,7 @@ def tick args
     end
     
     if (args.state.opening_done)
-      args.state.running_time = args.state.tick_count - args.state.start_time  
+      args.state.running_time = args.state.tick_count - args.state.start_time
       args.state.speed = 1 + (args.state.running_time / 1800).to_i
     end
   end
