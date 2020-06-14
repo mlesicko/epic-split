@@ -98,6 +98,7 @@ def draw args
   ]
 
   draw_map args
+  draw_obstacles args
   args.outputs.sprites << truck_left
   args.outputs.sprites << truck_right
   args.outputs.sprites << leg_left
