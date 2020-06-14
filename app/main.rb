@@ -42,6 +42,13 @@ def lose_game args
   end
 end 
 
+def ticks_to_time ticks
+  totalSeconds =  (ticks / 60).to_i
+  totalMinutes = (totalSeconds / 60).to_i
+  remainderSeconds = totalSeconds - (totalMinutes * 60)
+  return totalMinutes.to_s + ":" + remainderSeconds.to_s.rjust(2, "0")
+end
+
 def tick args
   init args
   spawn_obstacle args
@@ -69,13 +76,14 @@ def tick args
   args.state.running_time = args.state.tick_count - args.state.start_time  
   args.state.speed = 1 + (args.state.running_time / 1800).to_i
 
-  args.outputs.labels << [40, 80, args.state.trucks.left.y.to_s]
-  args.outputs.labels << [40, 40, args.state.trucks.right.y.to_s]
-
+  args.outputs.labels << [40, 80, (ticks_to_time args.state.running_time), 3, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
+  
+=begin
   if (truck_hit_obstacle? args, args.state.trucks.left) or 
       (truck_hit_obstacle? args, args.state.trucks.right) or
       (args.state.trucks.left.y < -105) or
       (args.state.trucks.right.y < -105)
     lose_game args
   end
+=end
 end
