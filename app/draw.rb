@@ -40,6 +40,83 @@ def draw_map args
   args.outputs.sprites << bg
 end
 
+def draw_controls args
+  zoom = args.state.zoom
+  alpha = [[255, (700 - args.state.tick_count) * 10].min, 0].max
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.left.x - 10, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.left.y, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/s.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.left.x - 10, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.left.y + 17, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/w.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.left.x - 27, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.left.y, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/a.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.left.x + 7, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.left.y, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/d.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.right.x - 10, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.right.y, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/down.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.right.x - 10, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.right.y + 17, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/up.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.right.x - 27, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.right.y, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/left.png',
+    0,
+    alpha
+  ]
+  args.outputs.sprites << [
+    (adjust_x_pos_for_zoom args.state.trucks.right.x + 7, zoom),
+    (adjust_y_pos_for_zoom args.state.trucks.right.y, zoom),
+    20 * zoom,
+    20 * zoom,
+    'sprites/keyboard_icons/right.png',
+    0,
+    alpha
+  ]
+end
+
 def draw args
   zoom = args.state.zoom
   truck_left = [
@@ -106,6 +183,9 @@ def draw args
   args.outputs.sprites << foot_left
   args.outputs.sprites << foot_right
   args.outputs.sprites << jcvd
+
+  draw_controls args
+
 end
 
 
