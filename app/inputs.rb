@@ -1,42 +1,67 @@
 def handleInputs args
-
+  left = args.state.trucks.left
+  right = args.state.trucks.right
   yspeed = 4
   xspeed = 2
 
 
   if args.inputs.keyboard.key_held.w
-    args.state.trucks.left.y += yspeed
+    left.y += yspeed
+    if truck_hit_truck? left, right or (left.y + left.h/2 > args.state.screen.h)
+      left.y -= yspeed
+    end
   end
 
   if args.inputs.keyboard.key_held.s
-    args.state.trucks.left.y -= yspeed
+    left.y -= yspeed
+    if (truck_hit_truck? left, right)
+      left.y += yspeed
+    end
+
   end
 
   if args.inputs.keyboard.key_held.a
-    args.state.trucks.left.x -= xspeed
+    left.x -= xspeed
+    if (truck_hit_truck? left, right) or (left.x - left.w/2 < 0)
+      left.x += xspeed
+    end
   end
 
   if args.inputs.keyboard.key_held.d
-    args.state.trucks.left.x += xspeed
+    left.x += xspeed
+    if (truck_hit_truck? left, right) or (left.x + left.w/2 > args.state.screen.w)
+      left.x -= xspeed
+    end
   end
 
 
   if args.inputs.keyboard.key_held.up
-    args.state.trucks.right.y += yspeed
+    right.y += yspeed
+    if (truck_hit_truck? right, left) or (right.y + right.h/2 > args.state.screen.h)
+      right.y -= yspeed
+    end
   end
 
   if args.inputs.keyboard.key_held.down
-    args.state.trucks.right.y -= yspeed
+    right.y -= yspeed
+    if truck_hit_truck? right, left
+      right.y += yspeed
+    end
   end
 
   if args.inputs.keyboard.key_held.left
-    args.state.trucks.right.x -= xspeed
+    right.x -= xspeed
+    if (truck_hit_truck? right, left) or (right.x - right.w/2 < 0)
+      right.x += xspeed
+    end
   end
 
   if args.inputs.keyboard.key_held.right
-    args.state.trucks.right.x += xspeed
+    right.x += xspeed
+    if (truck_hit_truck? right, left) or (right.x + right.w/2 > args.state.screen.w)
+      right.x -= xspeed
+    end
   end
 
 
 end
-

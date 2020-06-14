@@ -1,6 +1,7 @@
 require "app/init.rb"
 require "app/inputs.rb"
 require "app/updateJcvd.rb"
+require "app/collision.rb"
 require "app/tiling.rb"
 require "app/draw.rb"
 
@@ -26,4 +27,11 @@ def tick args
   detect_surfaces args
 
   draw args
+  if args.state.trucks.left.surfaces.include? "grass"
+    args.state.trucks.left.y -= 1
+  end
+
+  if args.state.trucks.right.surfaces.include? "grass"
+    args.state.trucks.right.y -= 1
+  end
 end

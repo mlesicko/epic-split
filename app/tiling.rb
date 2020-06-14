@@ -15,13 +15,6 @@ def image_by_surface surface_type
   end
 end
 
-def truck_rect truck
-  return [truck.x - truck.w/2,
-          truck.y - truck.h/2,
-          truck.w,
-          truck.h]
-end
-
 def detect_surfaces args
   left = args.state.trucks.left
   left.surfaces = []
