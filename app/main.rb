@@ -5,6 +5,7 @@ require "app/collision.rb"
 require "app/obstacles.rb"
 require "app/tiling.rb"
 require "app/draw.rb"
+require "app/credits.rb"
 
 def handleOpening args
   args.state.opening_done ||= false
@@ -29,21 +30,7 @@ def handleOpening args
     args.state.trucks.left.x = left
     args.state.trucks.right.x = right
   end
-  case args.state.tick_count
-  when (60..240)
-    args.outputs.labels << [args.state.screen.w/2+2, 563, "A", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2, 565, "A", 8, 1, 255, 255, 255, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2+2, 533, "LoggerDale", 18, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2, 535, "LoggerDale", 18, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2+2, 473, "Production", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2, 475, "Production", 8, 1, 255, 255, 255, 255, "fonts/CompassGold.ttf"]
-  when (360..580)
-    args.outputs.labels << [args.state.screen.w/2+2, 533, "Epic Split", 18, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2, 535, "Epic Split", 18, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2+2, 473, "How to Stretch Your Inner Thighs", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
-    args.outputs.labels << [args.state.screen.w/2, 475, "How to Stretch Your Inner Thighs", 8, 1, 255, 255, 255, 255, "fonts/CompassGold.ttf"]
   end
-end
 
 def lose_game args
   args.state.lost_at ||= args.state.tick_count
@@ -79,6 +66,7 @@ end
 def tick args
   init args
   spawn_obstacle args
+  play_credits args
   if !args.state.lost_at
     scroll_obstacles args
   

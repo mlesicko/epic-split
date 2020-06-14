@@ -1,5 +1,5 @@
 # Epic Split
-**Epic Split: How to Stretch Your Inner Thighs** is [Random WikiHow Jam](https://itch.io/jam/random-wikihow-jam) game by Loggerdale Productions
+**Epic Split: How to Stretch Your Inner Thighs** is [Random WikiHow Jam](https://itch.io/jam/random-wikihow-jam) game by LoggerDale Productions
 
 ## Attributions
 This game would not have been possible without:
