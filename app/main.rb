@@ -14,6 +14,14 @@ def tick args
   updateJcvd args
   detect_surfaces args
 
+  if args.state.trucks.left.surfaces.include? "grass"
+    args.state.trucks.left.y -= 1
+  end
+
+  if args.state.trucks.right.surfaces.include? "grass"
+    args.state.trucks.right.y -= 1
+  end
+
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
   jcvd = [ * (decenter args.state.jcvd), 52, 36, 'sprites/jcvd2.png', args.state.jcvd.rotation]
@@ -32,7 +40,5 @@ def tick args
   args.outputs.sprites << jcvd
   args.outputs.borders << [* (truck_rect args.state.trucks.left)]
   args.outputs.borders << [* (truck_rect args.state.trucks.right)]
-  args.outputs.labels << [40, 40, args.state.trucks.left.surfaces[0]]
-  args.outputs.labels << [80, 40, args.state.trucks.right.surfaces[0]]
 end
 
