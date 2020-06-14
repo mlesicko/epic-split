@@ -92,7 +92,7 @@ end
 
 def truck_hit_obstacle? args, truck
   rect = truck_rect truck
-  small_rect = [rect[0]+ 10, rect[1] + 10, rect[2] - 20, rect[3] - 20]
+  small_rect = [rect[0]+ 10, rect[1] - 10 + (rect[3]*1/3), rect[2] - 20, rect[3] * 2/3]
   return args.state.obstacles.reduce(false) do |hit, ob|
     ob_rect = [ob.x + 10, ob.y + 10, ob.w - 20, ob.h - 20]
     hit or (ob_rect.intersect_rect? small_rect)
