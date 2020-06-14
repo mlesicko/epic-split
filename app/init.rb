@@ -36,6 +36,9 @@ def init args
   args.state.jcvd.w ||= 52
   args.state.jcvd.h ||= 36
   args.state.obstacles ||= []
+  args.state.speed ||= 1
+  args.state.start_time ||= args.state.tick_count
+  args.state.running_time ||= 0
   init_trucks args
   init_tiles args
 end

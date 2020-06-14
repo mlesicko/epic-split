@@ -34,7 +34,7 @@ def draw_map args
   if args.state.tile.scroll.y >= args.state.tile.h
       args.state.tile.scroll.y = 0
   else
-    args.state.tile.scroll.y += 1
+    args.state.tile.scroll.y += args.state.speed
   end
 
   args.outputs.sprites << bg

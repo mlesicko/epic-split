@@ -34,6 +34,9 @@ def lose_game args
     args.state.trucks.right.x = nil
     args.state.trucks.right.y = nil
     args.state.obstacles = []
+    args.state.speed = nil
+    args.state.start_time = nil
+    args.state.running_time = nil
 
     args.state.lost_at = nil
   end
@@ -51,19 +54,28 @@ def tick args
     updateJcvd args
     detect_surfaces args
 
-    args.outputs.sounds << "sounds/music.ogg"
+    # args.outputs.sounds << "sounds/music.ogg"
 
     draw args
-    if args.state.trucks.left.surfaces.include? "grass"
-      args.state.trucks.left.y -= 1
+    if (args.state.trucks.left.surfaces.include? "grass") and !(truck_hit_truck? args.state.trucks.left, args.state.trucks.right)
+        args.state.trucks.left.y -= args.state.speed
     end
 
-    if args.state.trucks.right.surfaces.include? "grass"
-      args.state.trucks.right.y -= 1
+    if args.state.trucks.right.surfaces.include? "grass" and !(truck_hit_truck? args.state.trucks.right, args.state.trucks.left)
+      args.state.trucks.right.y -= args.state.speed
     end
   end
 
-  if (truck_hit_obstacle? args, args.state.trucks.left) or (truck_hit_obstacle? args, args.state.trucks.right)
+  args.state.running_time = args.state.tick_count - args.state.start_time  
+  args.state.speed = 1 + (args.state.running_time / 1800).to_i
+
+  args.outputs.labels << [40, 80, args.state.trucks.left.y.to_s]
+  args.outputs.labels << [40, 40, args.state.trucks.right.y.to_s]
+
+  if (truck_hit_obstacle? args, args.state.trucks.left) or 
+      (truck_hit_obstacle? args, args.state.trucks.right) or
+      (args.state.trucks.left.y < -105) or
+      (args.state.trucks.right.y < -105)
     lose_game args
   end
 end
