@@ -1,11 +1,13 @@
 def handleInputs args
-
+  left = args.state.trucks.left
+  right = args.state.trucks.right
   yspeed = 4
   xspeed = 2
 
 
   if args.inputs.keyboard.key_held.w
-    args.state.trucks.left.y += yspeed
+    left.y += yspeed
+    if truck_hit_truck? 
   end
 
   if args.inputs.keyboard.key_held.s
@@ -17,7 +19,10 @@ def handleInputs args
   end
 
   if args.inputs.keyboard.key_held.d
-    args.state.trucks.left.x += xspeed
+    left.x += xspeed
+    if truck_hit_truck? left right
+      left.x -= xspeed
+    end
   end
 
 

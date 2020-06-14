@@ -1,6 +1,7 @@
 require "app/init.rb"
 require "app/inputs.rb"
 require "app/updateJcvd.rb"
+require "app/collision.rb"
 require "app/tiling.rb"
 
 def decenter sprite
@@ -21,6 +22,7 @@ def tick args
   if args.state.trucks.right.surfaces.include? "grass"
     args.state.trucks.right.y -= 1
   end
+
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
