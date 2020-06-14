@@ -1,5 +1,5 @@
-#devid=CaptainLex
-#devtitle=LoggerDale Productions
-#gameid=#TODO
-#gametitle=Epic Split
-#version=0.1
+devid=CaptainLex
+devtitle=LoggerDale Productions
+gameid=epic-split
+gametitle=Epic Split
+version=1.0
