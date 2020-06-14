@@ -42,7 +42,7 @@ end
 def tick args
   init args
   spawn_obstacle args
-  if args.state.lost_at
+  if !args.state.lost_at
     scroll_obstacles args
 
     handleOpening args
