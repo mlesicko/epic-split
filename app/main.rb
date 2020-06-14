@@ -2,6 +2,7 @@ require "app/init.rb"
 require "app/inputs.rb"
 require "app/updateJcvd.rb"
 require "app/collision.rb"
+require "app/obstacles.rb"
 require "app/tiling.rb"
 
 def decenter sprite
@@ -10,7 +11,8 @@ end
 
 def tick args
   init args
-
+  spawn_obstacle args
+  scroll_obstacles args
   handleInputs args
   updateJcvd args
   detect_surfaces args
@@ -24,6 +26,7 @@ def tick args
   end
 
 
+
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
   jcvd = [ * (decenter args.state.jcvd), 52, 36, 'sprites/jcvd2.png', args.state.jcvd.rotation]
@@ -33,6 +36,7 @@ def tick args
   leg_right = [ * (decenter args.state.legs.right), args.state.legs.right.w, args.state.legs.right.h, 'sprites/pant.png', args.state.legs.right.rotation ]
 
   draw_map args
+  draw_obstacles args
   args.outputs.sprites << truck_left
   args.outputs.sprites << truck_right
   args.outputs.sprites << leg_left

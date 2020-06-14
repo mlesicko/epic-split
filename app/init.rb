@@ -35,6 +35,7 @@ end
 def init args
   args.state.jcvd.w ||= 52
   args.state.jcvd.h ||= 36
+  args.state.obstacles ||= []
   init_trucks args
   init_tiles args
 end
