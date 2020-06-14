@@ -14,6 +14,11 @@ Link: https://opengameart.org/content/free-top-down-car-sprites-by-unlucky-studi
 
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
+### Keyboard & Controllers Prompts by xelu
+Link: https://opengameart.org/content/free-keyboard-and-controllers-prompts-pack
+
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
 ### Compass Bold by Eeve Somepx
 Link: https://somepx.itch.io/humble-fonts-golda
 License: http://www.palmentieri.it/somepx/license.txt
