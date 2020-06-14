@@ -12,7 +12,6 @@ def rock x, y
           w: 89,
           h: 72,
           img: "sprites/objects/rock1.png"}
-  return 
 end
 
 def cone x, y
@@ -26,7 +25,7 @@ end
 def ob_by_surface x, y, args
  if (rand > 0.5) 
    return tree x, y 
- else 
+ else
    return rock x, y 
  end
 end
@@ -44,17 +43,26 @@ def scroll_obstacles args
   args.state.obstacles.each do |o|
     o.y -= 1
   end
+
+  args.state.obstacles = args.state.obstacles.select do |o|
+    o.y > -200
+  end
 end
 
 def draw_obstacles args
   obs = args.state.obstacles.map do |o| 
     [o.x, o.y, o.w, o.h, o.img]
   end
-  puts obs
   args.outputs.sprites << obs
 end
 
 
 
-def truck_hit_obsctacle? truck
+def truck_hit_obstacle? args, truck
+  rect = truck_rect truck
+  return args.state.obstacles.reduce(false) do |hit, ob|
+    ob_rect = [ob.x, ob.y, ob.w, ob.h]
+    args.outputs.borders << [*ob_rect]
+    hit or (ob_rect.intersect_rect? rect)
+  end
 end
