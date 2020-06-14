@@ -14,24 +14,56 @@ def rock x, y
           img: "sprites/objects/rock1.png"}
 end
 
-def cone x, y
-end
-
 def barrel x, y
+  return {x: x,
+          y: y,
+          w: 56,
+          h: 56,
+          img: "sprites/objects/barrel_blue.png"}
 end
 
+def oil x,y
+  return {x: x,
+          y: y,
+          w: 109,
+          h: 95,
+          img: "sprites/objects/oil.png"}
+end
+
+def detect_ob_surfaces x, y, args
+  surfaces = []
+  point = [x + 10, y, 20, 0]
+  args.state.tiles.each do |r|
+    r.each do |t|
+      tile_rect = [t.x, t.y, 128, 128]
+      if (tile_rect.intersect_rect? point)
+        surfaces << t.surface
+      end
+    end
+  end
+  return surfaces
+end
 
 
 def ob_by_surface x, y, args
- if (rand > 0.5) 
-   return tree x, y 
- else
-   return rock x, y 
- end
+  surfaces = detect_ob_surfaces x, y, args
+  if surfaces.include? "road"
+    if (rand < 0.5)
+      return oil x, y
+    else
+      return barrel x, y
+    end
+  else
+    if (rand > 0.5) 
+      return tree x, y 
+    else
+      return rock x, y 
+    end
+  end
 end
 
 def spawn_obstacle args
-  if (rand > 0.995)
+  if (args.state.opening_done && rand > 0.995)
     x = (args.state.screen.w - 64) * rand
     y = args.state.screen.h + 64
     args.state.obstacles << args.state.new_entity(:obstacle,
