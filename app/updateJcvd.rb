@@ -4,15 +4,9 @@ def makeFeet args
   args.state.feet.right.w ||= 19
   args.state.feet.right.h ||= 13
 
-<<<<<<< Updated upstream
   args.state.feet.left.x = args.state.trucks.left.x + 30
   args.state.feet.left.y = args.state.trucks.left.y + 80
   args.state.feet.right.x = args.state.trucks.right.x - 30
-=======
-  args.state.feet.left.x = args.state.trucks.left.x
-  args.state.feet.left.y = args.state.trucks.left.y + 80
-  args.state.feet.right.x = args.state.trucks.right.x
->>>>>>> Stashed changes
   args.state.feet.right.y = args.state.trucks.right.y + 80
 
   args.state.feet.left.rotation = args.state.jcvd.rotation
@@ -45,11 +39,6 @@ def makeLegs args
 end
 
 def updateJcvd args
-<<<<<<< Updated upstream
-=======
-  args.state.jcvd.w ||= 52
-  args.state.jcvd.h ||= 36
->>>>>>> Stashed changes
   args.state.jcvd.x = ((args.state.trucks.left.x + args.state.trucks.right.x) / 2)
   args.state.jcvd.y = ((args.state.trucks.left.y + args.state.trucks.right.y) / 2) + 80
   args.state.jcvd.rotation = Math.atan2(

@@ -12,6 +12,7 @@ def tick args
 
   handleInputs args
   updateJcvd args
+  detect_surfaces args
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
@@ -29,7 +30,9 @@ def tick args
   args.outputs.sprites << foot_left
   args.outputs.sprites << foot_right
   args.outputs.sprites << jcvd
-  args.outputs.labels << [40, 40, args.state.trucks.left.surface]
-  args.outputs.labels << [80, 40, args.state.trucks.right.surface]
+  args.outputs.borders << [* (truck_rect args.state.trucks.left)]
+  args.outputs.borders << [* (truck_rect args.state.trucks.right)]
+  args.outputs.labels << [40, 40, args.state.trucks.left.surfaces[0]]
+  args.outputs.labels << [80, 40, args.state.trucks.right.surfaces[0]]
 end
 

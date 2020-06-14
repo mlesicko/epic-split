@@ -15,18 +15,27 @@ def image_by_surface surface_type
   end
 end
 
+def truck_rect truck
+  return [truck.x - truck.w/2,
+          truck.y - truck.h/2,
+          truck.w,
+          truck.h]
+end
+
 def detect_surfaces args
   left = args.state.trucks.left
-  left_rect = [left.x, left.y, left.x + left.w, left.y - left.h]
+  left.surfaces = []
+  left_rect = truck_rect left
   right = args.state.trucks.right
-  right_rect = [right.x, right.y, right.x + right.w, right.y - right.h]
+  right.surfaces = []
+  right_rect = truck_rect right
   args.state.tiles.each do |r| 
     r.each do |t|
-      tile_rect = [t.x, t.y, t.x + 128, t.x + 128]
-      if tile_rect.intersects_rect? left_rect
-        args.state.trucks.left.surface = t.surface
-      elsif tile_rect.intersects_rect? right_rect
-        args.state.trucks.right.surface = t.surface
+      tile_rect = [t.x, t.y, 128, 128]
+      if (tile_rect.intersect_rect? left_rect)
+        left.surfaces << t.surface
+      elsif (tile_rect.intersect_rect? right_rect)
+        right.surfaces << t.surface
       end
     end
   end
