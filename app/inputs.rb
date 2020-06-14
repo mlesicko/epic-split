@@ -1,7 +1,7 @@
 def handleInputs args
   left = args.state.trucks.left
   right = args.state.trucks.right
-  yspeed = 4
+  yspeed = 3 + args.state.speed
   xspeed = 2
 
 
