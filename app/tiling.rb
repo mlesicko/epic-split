@@ -15,6 +15,23 @@ def image_by_surface surface_type
   end
 end
 
+def detect_surfaces args
+  left = args.state.trucks.left
+  left_rect = [left.x, left.y, left.x + left.w, left.y - left.h]
+  right = args.state.trucks.right
+  right_rect = [right.x, right.y, right.x + right.w, right.y - right.h]
+  args.state.tiles.each do |r| 
+    r.each do |t|
+      tile_rect = [t.x, t.y, t.x + 128, t.x + 128]
+      if tile_rect.intersects_rect? left_rect
+        args.state.trucks.left.surface = t.surface
+      elsif tile_rect.intersects_rect? right_rect
+        args.state.trucks.right.surface = t.surface
+      end
+    end
+  end
+end
+
 def draw_map args
   bg = args.state.tiles.map do |r| 
      r.map do |t| 
@@ -29,5 +46,4 @@ def draw_map args
   end
 
   args.outputs.sprites << bg
-  args.outputs.labels << [0, 0, "!", 4]
 end

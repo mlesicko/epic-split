@@ -11,7 +11,6 @@ def tick args
   init args
 
   handleInputs args
-  draw_map args
   updateJcvd args
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
@@ -22,6 +21,7 @@ def tick args
   leg_left = [ * (decenter args.state.legs.left), args.state.legs.left.w, args.state.legs.left.h, 'sprites/pant.png', args.state.legs.left.rotation ]
   leg_right = [ * (decenter args.state.legs.right), args.state.legs.right.w, args.state.legs.right.h, 'sprites/pant.png', args.state.legs.right.rotation ]
 
+  draw_map args
   args.outputs.sprites << truck_left
   args.outputs.sprites << truck_right
   args.outputs.sprites << leg_left
@@ -29,5 +29,7 @@ def tick args
   args.outputs.sprites << foot_left
   args.outputs.sprites << foot_right
   args.outputs.sprites << jcvd
+  args.outputs.labels << [40, 40, args.state.trucks.left.surface]
+  args.outputs.labels << [80, 40, args.state.trucks.right.surface]
 end
 
