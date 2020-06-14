@@ -4,19 +4,32 @@ require "app/updateJcvd.rb"
 require "app/collision.rb"
 require "app/obstacles.rb"
 require "app/tiling.rb"
+require "app/draw.rb"
 
-def decenter sprite
-  return [sprite.x - sprite.w / 2, sprite.y - sprite.h / 2]
+def handleOpening args
+  args.state.opening_done ||= false
+  args.state.zoom ||= 20
+  if args.state.opening_done == false
+    args.state.zoom -= 0.05
+  end
+  if args.state.zoom <= 1
+    args.state.zoom = 1
+    args.state.opening_done = true
+  end
 end
 
 def tick args
   init args
   spawn_obstacle args
   scroll_obstacles args
+
+  handleOpening args
+
   handleInputs args
   updateJcvd args
   detect_surfaces args
 
+  draw args
   if args.state.trucks.left.surfaces.include? "grass"
     args.state.trucks.left.y -= 1
   end
@@ -24,8 +37,6 @@ def tick args
   if args.state.trucks.right.surfaces.include? "grass"
     args.state.trucks.right.y -= 1
   end
-
-
 
   truck_left = [ * (decenter args.state.trucks.left), args.state.trucks.left.w, args.state.trucks.left.h, 'sprites/truck.png' ]
   truck_right = [ * (decenter args.state.trucks.right), args.state.trucks.right.w, args.state.trucks.right.h, 'sprites/truck.png' ]
@@ -50,4 +61,3 @@ def tick args
   args.outputs.labels << [40, 40, (truck_hit_obstacle? args, args.state.trucks.right).to_s]
   args.outputs.labels << [40, 120, args.state.obstacles.length.to_s]
 end
-
