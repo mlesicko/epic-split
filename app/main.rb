@@ -16,6 +16,20 @@ def handleOpening args
     args.state.zoom = 1
     args.state.opening_done = true
   end
+  case args.state.tick_count
+  when (60..240)
+    args.outputs.labels << [args.state.screen.w/2+2, 563, "A", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2, 565, "A", 8, 1, 255, 255, 255, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2+2, 533, "LoggerDale", 18, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2, 535, "LoggerDale", 18, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2+2, 473, "Production", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2, 475, "Production", 8, 1, 255, 255, 255, 255, "fonts/CompassGold.ttf"]
+  when (360..580)
+    args.outputs.labels << [args.state.screen.w/2+2, 533, "Epic Split", 18, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2, 535, "Epic Split", 18, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2+2, 473, "How to Stretch Your Inner Thighs", 8, 1, 0, 0, 0, 255, "fonts/CompassGold.ttf"]
+    args.outputs.labels << [args.state.screen.w/2, 475, "How to Stretch Your Inner Thighs", 8, 1, 255, 255, 255, 255, "fonts/CompassGold.ttf"]
+  end
 end
 
 def lose_game args

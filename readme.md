@@ -14,6 +14,10 @@ Link: https://opengameart.org/content/free-top-down-car-sprites-by-unlucky-studi
 
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
+### Compass Bold by Eeve Somepx
+Link: https://somepx.itch.io/humble-fonts-golda
+License: http://www.palmentieri.it/somepx/license.txt
+
 ### Deliberate Thought by Kevin MacLeod
 Link: https://incompetech.filmmusic.io/song/3635-deliberate-thought
 
