@@ -35,10 +35,12 @@ def play_credits args
   when (1200..1320)
     render_attribution args, "Compass Bold by Eeve Somepx", "https://somepx.itch.io/humble-fonts-golda", "http://www.palmentieri.it/somepx/license.txt"
   when (1440..1560)
-    render_attribution args, "Made in DragonRuby", "https://dragonruby.itch.io/dragonruby-gtk", nil
+    render_attribution args, "Large Crash vy CGEffex", "https://freesound.org/people/CGEffex/sounds/99960/", "http://creativecommons.org/licenses/by/3.0/"
   when (1680..1800)
-    render_attribution args, "How to Stetch Your Inner Thighs on WikiHow", "https://www.wikihow.life/Stretch-Your-Inner-Thighs", nil
+    render_attribution args, "Made in DragonRuby", "https://dragonruby.itch.io/dragonruby-gtk", nil
   when (1920..2040)
+    render_attribution args, "How to Stetch Your Inner Thighs on WikiHow", "https://www.wikihow.life/Stretch-Your-Inner-Thighs", nil
+  when (2200..2320)
     render_attribution args, "Made for the Random WikiHow Jam", "https://itch.io/jam/random-wikihow-jam", nil
 
   end
