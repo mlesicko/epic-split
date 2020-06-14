@@ -95,7 +95,6 @@ def tick args
 
 
   args.outputs.labels << [40, 80, (ticks_to_time args.state.running_time), 3, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
-  
   if (truck_hit_obstacle? args, args.state.trucks.left) or 
       (truck_hit_obstacle? args, args.state.trucks.right) or
       (args.state.trucks.left.y < -105) or

@@ -63,7 +63,7 @@ def ob_by_surface x, y, args
 end
 
 def spawn_obstacle args
-  if (args.state.opening_done && rand > 0.995)
+  if (args.state.opening_done && rand > (0.996 - (args.state.speed / 500)))
     x = (args.state.screen.w - 64) * rand
     y = args.state.screen.h + 64
     args.state.obstacles << args.state.new_entity(:obstacle,
