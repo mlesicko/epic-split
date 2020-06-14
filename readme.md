@@ -19,6 +19,16 @@ Link: https://incompetech.filmmusic.io/song/3635-deliberate-thought
 
 License: http://creativecommons.org/licenses/by/4.0/
 
+### Tires Squeaking by Rutger Muller
+Link: https://freesound.org/people/RutgerMuller/sounds/104026/
+
+License: https://creativecommons.org/publicdomain/zero/1.0/
+
+### Large Crash by CGEffex
+Link: https://freesound.org/people/CGEffex/sounds/99960/
+
+License: http://creativecommons.org/licenses/by/3.0/
+
 ### DragonRuby
 Link: https://dragonruby.itch.io/dragonruby-gtk
 
