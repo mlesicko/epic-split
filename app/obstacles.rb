@@ -3,7 +3,7 @@ def tree x, y
           y: y,
           w: 141,
           h: 141,
-          img: "sprites/objects/tree_small.png"}
+          img: "sprites/objects/tree.png"}
 end
 
 def rock x, y
@@ -11,7 +11,7 @@ def rock x, y
           y: y,
           w: 89,
           h: 72,
-          img: "sprites/objects/rock1.png"}
+          img: "sprites/objects/rock.png"}
 end
 
 def barrel x, y
@@ -19,7 +19,7 @@ def barrel x, y
           y: y,
           w: 56,
           h: 56,
-          img: "sprites/objects/barrel_blue.png"}
+          img: "sprites/objects/barrel.png"}
 end
 
 def oil x,y

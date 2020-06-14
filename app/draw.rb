@@ -138,7 +138,7 @@ def draw args
     (decentery args.state.jcvd, zoom), 
     52 * zoom, 
     36 * zoom, 
-    'sprites/jcvd2.png', 
+    'sprites/jcvd.png', 
     args.state.jcvd.rotation
   ]
   foot_left = [ 

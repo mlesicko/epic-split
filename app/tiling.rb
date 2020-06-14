@@ -9,9 +9,9 @@ end
 def image_by_surface surface_type
   case surface_type  
   when "grass"
-    return "sprites/tiles/grass/land_grass11.png"
+    return "sprites/tiles/grass.png"
   when  "road"
-    return "sprites/tiles/asphalt\ road/road_asphalt01.png"
+    return "sprites/tiles/road.png"
   end
 end
 
