@@ -94,7 +94,6 @@ def truck_hit_obstacle? args, truck
   rect = truck_rect truck
   return args.state.obstacles.reduce(false) do |hit, ob|
     ob_rect = [ob.x, ob.y, ob.w, ob.h]
-    args.outputs.borders << [*ob_rect]
     hit or (ob_rect.intersect_rect? rect)
   end
 end
