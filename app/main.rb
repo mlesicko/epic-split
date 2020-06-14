@@ -13,7 +13,7 @@ def handleOpening args
   if args.state.opening_done == false
     args.state.zoom -= 0.05
   end
-  if args.state.zoom <= 1
+  if args.state.zoom <= 1 and !args.state.opening_done
     args.state.zoom = 1
     args.state.opening_done = true
     args.state.opening_done_at = args.state.tick_count
@@ -88,12 +88,12 @@ def tick args
     end
     
     if (args.state.opening_done)
-      args.state.running_time = args.state.tick_count - args.state.start_time
+      args.state.running_time = args.state.total_running_time - args.state.start_time
       args.state.speed = 1 + (args.state.running_time / 1800).to_i
     end
   end
 
-
+  args.state.total_running_time = args.state.tick_count - args.state.opening_done_at
   args.outputs.labels << [40, 80, (ticks_to_time args.state.running_time), 3, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
   if (truck_hit_obstacle? args, args.state.trucks.left) or 
       (truck_hit_obstacle? args, args.state.trucks.right) or
