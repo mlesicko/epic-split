@@ -4,9 +4,9 @@ def init_trucks args
   args.state.trucks.right.w ||= 88
   args.state.trucks.right.h ||= 218
   
-  args.state.trucks.left.x = 575
+  args.state.trucks.left.x ||= 575
   args.state.trucks.left.y ||= 310
-  args.state.trucks.right.x = 705
+  args.state.trucks.right.x ||= 705
   args.state.trucks.right.y ||= 310
 end
 
