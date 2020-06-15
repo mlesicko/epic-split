@@ -20,7 +20,7 @@ Link: https://opengameart.org/content/free-keyboard-and-controllers-prompts-pack
 License: https://creativecommons.org/publicdomain/zero/1.0/
 
 ### Compass Bold by Eeve Somepx
-Link: https://somepx.itch.io/humble-fonts-golda
+Link: https://somepx.itch.io/humble-fonts-gold
 License: http://www.palmentieri.it/somepx/license.txt
 
 ### Deliberate Thought by Kevin MacLeod
