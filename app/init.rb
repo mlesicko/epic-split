@@ -41,6 +41,8 @@ def init args
   args.state.obstacles ||= []
   args.state.speed ||= 1
   args.state.total_running_time ||= 0
+  args.state.paused ||=false
+  args.state.muted ||=false
   if args.state.opening_done_at
     args.state.start_time ||= args.state.total_running_time
     args.state.running_time ||= 0

@@ -30,7 +30,7 @@ def handleOpening args
     args.state.trucks.left.x = left
     args.state.trucks.right.x = right
   end
-  end
+end
 
 def lose_game args
   args.state.lost_at ||= args.state.tick_count
@@ -65,14 +65,21 @@ end
 
 def tick args
   init args
-  spawn_obstacle args
   play_credits args
+  handleSystemInputs args
   if !args.state.lost_at
-    scroll_obstacles args
-  
-    handleOpening args
 
-    handleInputs args
+    if !args.state.paused
+      spawn_obstacle args
+      scroll_obstacles args
+      handleOpening args
+      handleInputs args
+      if (args.state.opening_done)
+        args.state.running_time = args.state.total_running_time - args.state.start_time
+        args.state.speed = 1 + (args.state.running_time / 1800).to_i
+      end
+    end
+
     updateJcvd args
     detect_surfaces args
 
@@ -87,18 +94,22 @@ def tick args
       args.state.trucks.right.y -= args.state.speed
     end
     
-    if (args.state.opening_done)
-      args.state.running_time = args.state.total_running_time - args.state.start_time
-      args.state.speed = 1 + (args.state.running_time / 1800).to_i
-    end
   end
 
-  args.state.total_running_time = args.state.tick_count - args.state.opening_done_at
+  if args.state.paused
+    args.state.opening_done_at = args.state.tick_count - args.state.total_running_time
+  else
+    args.state.total_running_time = args.state.tick_count - args.state.opening_done_at
+  end
   args.outputs.labels << [40, 80, (ticks_to_time args.state.running_time), 3, 1, 255, 255, 100, 255, "fonts/CompassGold.ttf"]
   if (truck_hit_obstacle? args, args.state.trucks.left) or 
       (truck_hit_obstacle? args, args.state.trucks.right) or
       (args.state.trucks.left.y < -105) or
       (args.state.trucks.right.y < -105)
     lose_game args
+  end
+  if args.state.muted || args.state.paused
+    args.outputs.sounds = []
+    args.outputs.sounds << "sounds/nothing.ogg"
   end
 end

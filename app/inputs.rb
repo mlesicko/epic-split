@@ -31,6 +31,15 @@ def handleInputs args
   end
 end
 
+def handleSystemInputs args
+  if args.inputs.keyboard.key_down.p
+     args.state.paused = !args.state.paused
+  end
+  if args.inputs.keyboard.key_down.m
+     args.state.muted = !args.state.muted
+  end
+end
+
 def handle_movement truck, keys, stick, args
     if keys[:up] || stick[:y] >= 0.5
       truck_forward truck, args

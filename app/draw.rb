@@ -32,7 +32,7 @@ def draw_map args
 
   if args.state.tile.scroll.y >= args.state.tile.h
       args.state.tile.scroll.y = 0
-  else
+  elsif !args.state.paused
     args.state.tile.scroll.y += args.state.speed
   end
 
