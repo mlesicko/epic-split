@@ -8,6 +8,9 @@ def init_trucks args
   args.state.trucks.left.y ||= 270
   args.state.trucks.right.x ||= 705
   args.state.trucks.right.y ||= 270
+
+  args.state.trucks.left.rotate ||=0
+  args.state.trucks.right.rotate ||=0
 end
 
 def init_tiles args
