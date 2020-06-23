@@ -51,6 +51,7 @@ def lose_game args
     args.state.speed = nil
     args.state.start_time = nil
     args.state.running_time = nil
+    reset_biome args
 
     args.state.lost_at = nil
   end
@@ -74,6 +75,7 @@ def tick args
       scroll_obstacles args
       handleOpening args
       handleInputs args
+      update_biome args
       if (args.state.opening_done)
         args.state.running_time = args.state.total_running_time - args.state.start_time
         args.state.speed = 1 + (args.state.running_time / 1800).to_i
@@ -86,11 +88,11 @@ def tick args
     args.outputs.sounds << "sounds/music.ogg"
 
     draw args
-    if (args.state.trucks.left.surfaces.include? "grass") and !(truck_hit_truck? args.state.trucks.left, args.state.trucks.right)
+    if (args.state.trucks.left.surfaces.any? {|surface| surface != "road"}) and !(truck_hit_truck? args.state.trucks.left, args.state.trucks.right)
         args.state.trucks.left.y -= args.state.speed
     end
 
-    if args.state.trucks.right.surfaces.include? "grass" and !(truck_hit_truck? args.state.trucks.right, args.state.trucks.left)
+    if (args.state.trucks.right.surfaces.any? {|surface| surface != "road"}) and !(truck_hit_truck? args.state.trucks.right, args.state.trucks.left)
       args.state.trucks.right.y -= args.state.speed
     end
     
